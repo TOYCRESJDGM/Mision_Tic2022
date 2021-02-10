@@ -1,0 +1,58 @@
+Resumen cambios necesarios para que los acepte el boot:
+& -> ||
+* -> % en where like
+Left(valor, longitud) -> substr(valor,1,longitud)
+Right(valor, longitud) -> substr(valor, -1, longitud)
+Mid(valor, inicio, longitud) -> substr(valor, inicio, longitud)
+Len -> lenght
+Ucase- > UPPER
+INSTR(1,mail,'@',0) -> INSTR(mail,'@')
+
+
+
+1. 	SELECT DISTINCT Client.Career
+	FROM Client
+	ORDER BY Client.Career
+	LIMIT 100;
+
+2.	SELECT Client.Career, Count(Client.id) AS [Cantidad Clientes]
+	FROM Client
+	GROUP BY Client.Career
+	ORDER BY Count(Client.id) DESC , Client.Career
+	LIMIT 100;
+
+3.	SELECT DISTINCT Card.Card
+	FROM Card LEFT JOIN ClientCard ON Card.id = ClientCard.idCard
+	WHERE ClientCard.idCard is NULL
+	LIMIT 100;
+
+4.	SELECT [Account Status], COUNT(*) AS [Cantidad Clientes]
+	FROM AccountStatus INNER JOIN Client ON Client.idAccountStatus = AccountStatus.id
+	GROUP BY [Account Status]
+	LIMIT 100;
+
+5.	SELECT ([First Name]  || " " || [Last Name]) AS [Nombre y Apellido]
+	FROM ClientCard INNER JOIN Client ON Client.id = ClientCard.idClient
+	WHERE ClientCard.idCard like "%CC%"
+	GROUP BY 1
+	HAVING COUNT(*) =1
+	ORDER BY 1
+	LIMIT 100;
+
+6. 	SELECT Hometown, round(avg(age),2) AS [Promedio Edad]
+	FROM Hometown INNER JOIN Client ON Hometown.idHometown = Client.idHometown
+	GROUP BY Hometown
+	HAVING  round(avg(age),2)> 40
+	ORDER BY round(avg(age),2) DESC,  Hometown ASC
+	LIMIT 100;
+
+7. 	SELECT SUBSTR (mail,1,INSTR(mail,"@")-1) AS Direccion, UPPER(SUBSTR(mail,INSTR(mail,"@")+1,INSTR(mail,".")-INSTR(mail,"@")-1)) AS Dominio, hometown
+	FROM Client  INNER JOIN Hometown  ON Hometown.idHometown = Client.idHometown
+	ORDER BY 1
+	LIMIT 100;
+
+
+
+SELECT * FROM Warehouse_description 
+INNER JOIN Warehouse ON Warehouse_description.fk_warehouse_id = Warehouse.warehouse_id 
+WHERE Warehouse.warehouse_id = ?
