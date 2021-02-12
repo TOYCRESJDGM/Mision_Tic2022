@@ -2,7 +2,7 @@
 """
 Created on Sat Oct 24 13:57:03 2020
 
-@author: user
+@author: Juan David González Mosquera
 """
 
 import pandas as pd
