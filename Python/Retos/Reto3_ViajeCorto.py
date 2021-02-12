@@ -2,7 +2,7 @@
 """
 Created on Thu Oct  8 17:01:15 2020
 
-@author: user
+@author: Juan David González Mosquera
 """
 
 diccionario = {('H', 'H'): 0, ('H', 'A'): 21, ('H', 'B'): 57, ('H', 'C'): 58, ('H', 'D'): 195, ('H', 'E'): 245, ('H', 'F'): 241,
